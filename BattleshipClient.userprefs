@@ -1,0 +1,25 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BattleshipClient/GameField.cs">
+    <Files>
+      <File FileName="BattleshipClient/Form1.cs" Line="38" Column="31" />
+      <File FileName="BattleshipClient/PortSender.cs" Line="73" Column="3" />
+      <File FileName="BattleshipClient/GameField.cs" Line="70" Column="41" />
+      <File FileName="BattleshipClient/GamesControl.cs" Line="12" Column="35" />
+      <File FileName="BattleshipClient/GameField.Designer.cs" Line="156" Column="10" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="BattleshipClient" expanded="True">
+            <Node name="GameField.cs" expanded="True" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
