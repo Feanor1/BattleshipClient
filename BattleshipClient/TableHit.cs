@@ -69,8 +69,6 @@ namespace BattleshipClient
                     float segedX = ((float)this.Width / (float)X);
                     float segedY = ((float)this.Height / (float)Y);
 
-                    Graphics p1em = this.CreateGraphics();
-
                     int kockaX = (int)((e.X) / segedX);
                     int kockaY = (int)((e.Y) / segedY);
 
@@ -88,8 +86,11 @@ namespace BattleshipClient
 
 
                     // Volt-e már a lövés
-                    if (volte)
+                    if (!volte)
                     {
+
+                        Graphics p1em = this.CreateGraphics();
+
                         lövések.Add(new int[] { kockaX, kockaY });
 
                         object[] args = new object[2];
