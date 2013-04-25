@@ -9,13 +9,39 @@ namespace BattleshipClient {
 	class Tables : Panel{
 		public int X { get; set; }
 		public int Y { get; set; }
+		Bitmap hajo;
+		ShipPosition ships;
 		public Tables(int x, int y) : base() {
+			ships = new ShipPosition();
+
 			this.BackgroundImage = BattleshipClient.Properties.Resources.water;
 			X = x;
 			Y = y;
 			this.DoubleBuffered = true;
 			this.MouseMove+=new MouseEventHandler(Helper_MouseMove);
 			this.Paint += new PaintEventHandler(Helper_Paint);
+			this.MouseClick += new MouseEventHandler(Tables_MouseClick);
+		}
+
+		void Tables_MouseClick(object sender, MouseEventArgs e) {
+			Graphics g = this.CreateGraphics();
+			bool felv = CommonData.Instance.HajoFelveve;
+			float negyzetx = ((float)this.Width / (float)X);
+			float negyzety = ((float)this.Height / (float)Y);
+			int eX = e.X;
+			int eY = e.Y;
+			if (felv && (e.Button == System.Windows.Forms.MouseButtons.Right)) {
+				bool horiz = true;
+				horiz = CommonData.Instance.HajoHorizontalis;
+				if (horiz) {
+					CommonData.Instance.HajoHorizontalis = false;
+				} else {
+					CommonData.Instance.HajoHorizontalis = true;
+				}
+				
+				//hajo.RotateFlip(RotateFlipType.Rotate90FlipNone);
+				//g.DrawImage(hajo, eY - (negyzety / 2), eX - (negyzetx / 2));
+			}
 		}
 
 		void Helper_Paint(object sender, PaintEventArgs e) {
@@ -31,11 +57,11 @@ namespace BattleshipClient {
 				}
 			}
 		}
-
+		
 		void Helper_MouseMove(object sender, MouseEventArgs e) {
-			Bitmap hajo;
 			this.Refresh();
 			bool felv = CommonData.Instance.HajoFelveve;
+			bool horizont = CommonData.Instance.HajoHorizontalis;
 			hajotipusok ship = CommonData.Instance.Hajotipus;
 			Graphics g = this.CreateGraphics();
 			float negyzetx = ((float)this.Width / (float)X);
@@ -45,35 +71,60 @@ namespace BattleshipClient {
 			int kozepx = eX + ((int)negyzetx / 2);
 			int kozepy = eY + ((int)negyzety / 2);
 			Size meret;
-			if (felv) {
+			//if (felv && horizont) {
 				switch (ship) {
 					case hajotipusok.AircraftCarrier:
-						meret = new Size((int)negyzetx * 5, (int)negyzety);
-						hajo = new Bitmap(BattleshipClient.Properties.Resources._01aircraft_carrier, meret);
-						g.DrawImage(hajo, eX - (negyzetx/2), eY - (negyzety/2));
+						if (felv  && horizont) {
+							meret = new Size((int)negyzetx * 5, (int)negyzety);
+							hajo = new Bitmap(BattleshipClient.Properties.Resources._01aircraft_carrier, meret);
+							g.DrawImage(hajo, eX - (negyzetx / 2), eY - (negyzety / 2));
+						} else if (felv && !horizont) {
+							hajo.RotateFlip(RotateFlipType.Rotate90FlipX);
+							g.DrawImage(hajo, eX - (negyzetx / 2), eY - (negyzety / 2));
+						}
 						break;
 					case hajotipusok.Battleship:
-						meret = new Size((int)negyzetx * 4, (int)negyzety);
-						hajo = new Bitmap(BattleshipClient.Properties.Resources._02Battleship, meret);
+						if (felv  && horizont) {
+							meret = new Size((int)negyzetx * 4, (int)negyzety);
+							hajo = new Bitmap(BattleshipClient.Properties.Resources._02Battleship, meret);
 						g.DrawImage(hajo, eX - (negyzetx / 2), eY - (negyzety / 2));
+							} else if (felv && !horizont) {
+							hajo.RotateFlip(RotateFlipType.Rotate90FlipNone);
+							g.DrawImage(hajo, eX - (negyzetx / 2), eY - (negyzety / 2));
+						}
 						break;
 					case hajotipusok.Cruiser:
-						meret = new Size((int)negyzetx * 3, (int)negyzety);
-						hajo = new Bitmap(BattleshipClient.Properties.Resources._03Cruiser, meret);
+						if (felv  && horizont) {
+							meret = new Size((int)negyzetx * 3, (int)negyzety);
+							hajo = new Bitmap(BattleshipClient.Properties.Resources._03Cruiser, meret);
 						g.DrawImage(hajo, eX - (negyzetx / 2), eY - (negyzety / 2));
+						} else if (felv && !horizont) {
+							hajo.RotateFlip(RotateFlipType.Rotate90FlipNone);
+							g.DrawImage(hajo, eX - (negyzetx / 2), eY - (negyzety / 2));
+						}
 						break;
 					case hajotipusok.Destroyer:
-						meret = new Size((int)negyzetx * 2, (int)negyzety);
-						hajo = new Bitmap(BattleshipClient.Properties.Resources._04Destroyer, meret);
-						g.DrawImage(hajo, eX - (negyzetx / 2), eY - (negyzety / 2));
+						if (felv  && horizont) {
+							meret = new Size((int)negyzetx * 2, (int)negyzety);
+							hajo = new Bitmap(BattleshipClient.Properties.Resources._04Destroyer, meret);
+							g.DrawImage(hajo, eX - (negyzetx / 2), eY - (negyzety / 2));
+						} else if (felv && !horizont) {
+							hajo.RotateFlip(RotateFlipType.Rotate90FlipNone);
+							g.DrawImage(hajo, eX - (negyzetx / 2), eY - (negyzety / 2));
+						}
 						break;
 					case hajotipusok.Submarine:
-						meret = new Size((int)negyzetx * 1, (int)negyzety);
-						hajo = new Bitmap(BattleshipClient.Properties.Resources._05Submarine, meret);
-						g.DrawImage(hajo, eX - (negyzetx / 2), eY - (negyzety / 2));
+						if (felv  && horizont) {
+							meret = new Size((int)negyzetx * 1, (int)negyzety);
+							hajo = new Bitmap(BattleshipClient.Properties.Resources._05Submarine, meret);
+							g.DrawImage(hajo, eX - (negyzetx / 2), eY - (negyzety / 2));
+						} else if (felv && !horizont) {
+							hajo.RotateFlip(RotateFlipType.Rotate90FlipNone);
+							g.DrawImage(hajo, eX - (negyzetx / 2), eY - (negyzety / 2));
+						}
 						break;
 				}
-			}
+			//} 
 		}
 	}
 }

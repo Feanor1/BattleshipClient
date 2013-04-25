@@ -19,29 +19,32 @@ namespace BattleshipClient {
 
 		private void aircraftcarrier_Click(object sender, EventArgs e) {
 			CommonData.Instance.HajoFelveve = true;
+			CommonData.Instance.HajoHorizontalis = true;
 			CommonData.Instance.Hajotipus = hajotipusok.AircraftCarrier;
-			//Hkivalasztva = true;
-			//Hajok = hajotipusok.AircraftCarrier;
 		}
 
 		private void battleship_Click(object sender, EventArgs e) {
-			//Hkivalasztva = true;
-			//Hajok = hajotipusok.Battleship;
+			CommonData.Instance.HajoFelveve = true;
+			CommonData.Instance.HajoHorizontalis = true;
+			CommonData.Instance.Hajotipus = hajotipusok.Battleship;
 		}
 
 		private void cruiser_Click(object sender, EventArgs e) {
-			Hkivalasztva = true;
-			Hajok = hajotipusok.Cruiser;
+			CommonData.Instance.HajoFelveve = true;
+			CommonData.Instance.HajoHorizontalis = true;
+			CommonData.Instance.Hajotipus = hajotipusok.Cruiser;
 		}
 
 		private void destroyer_Click(object sender, EventArgs e) {
-			Hkivalasztva = true;
-			Hajok = hajotipusok.Destroyer;
+			CommonData.Instance.HajoFelveve = true;
+			CommonData.Instance.HajoHorizontalis = true;
+			CommonData.Instance.Hajotipus = hajotipusok.Destroyer;
 		}
 
 		private void submarine_Click(object sender, EventArgs e) {
-			Hkivalasztva = true;
-			Hajok = hajotipusok.Submarine;
+			CommonData.Instance.HajoFelveve = true;
+			CommonData.Instance.HajoHorizontalis = true;
+			CommonData.Instance.Hajotipus = hajotipusok.Submarine;
 		}
 	}
 }

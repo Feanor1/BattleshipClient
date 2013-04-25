@@ -33,7 +33,6 @@
 			this.Name = "BoardControl";
 			this.Size = new System.Drawing.Size(430, 430);
 			this.Paint += new System.Windows.Forms.PaintEventHandler(this.BoardControl_Paint);
-			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.BoardControl_MouseMove);
 			this.ResumeLayout(false);
 
 		}

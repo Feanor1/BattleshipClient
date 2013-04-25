@@ -10,6 +10,7 @@ namespace BattleshipClient {
 		public static CommonData Instance { get { return _instance; } }
 		public bool HajoFelveve { get; set; }
 		public hajotipusok Hajotipus { get; set; }
+		public bool HajoHorizontalis { get; set; }
 		public UserAccount Felhasznalo { get; set; }
 		public PortSender Ps { get; set; }
 	}
