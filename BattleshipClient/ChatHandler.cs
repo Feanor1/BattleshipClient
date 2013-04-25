@@ -21,13 +21,19 @@ namespace BattleshipClient {
 
 		public List<string> GetNewMsgs() {
 			List<string> valasz = new List<string>();
-			return valasz;
+            object[] args = new object[1];
+            args[0] = valasz;
+            ps.Send("chatsystem", "GetNewMsgs", args);
+            return valasz;
+			
 		}
 
 		/// 
 		/// <param name="Message"></param>
 		public void SendMsg(string Message) {
-
+            object[] args = new object[1];
+            args[0] = Message;
+            ps.Send("chatsystem", "SendMsg", args);
 		}
 
 	}//end ChatHandler
