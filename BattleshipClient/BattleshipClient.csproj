@@ -86,6 +86,9 @@
     <Compile Include="GamesControl.Designer.cs">
       <DependentUpon>GamesControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="TableHit.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Tables.cs">
       <SubType>Component</SubType>
     </Compile>
