@@ -268,7 +268,7 @@ namespace BattleshipClient {
 								hajo = new Bitmap(BattleshipClient.Properties.Resources._04Destroyer, meret);
 								letett.Add(new Hajok(shippos.X, shippos.Y, hajo, meret));
 								felv = false;
-								//CommonData.Instance.Hajotipus = hajotipusok.None;
+								CommonData.Instance.Hajotipus = hajotipusok.None;
 							} else if (felv && !horizont) {
 								meret = new Size((int)negyzetx, (int)negyzety * 2);
 								Bitmap x = new Bitmap(BattleshipClient.Properties.Resources._02Battleship);
@@ -296,7 +296,7 @@ namespace BattleshipClient {
 								hajo = new Bitmap(BattleshipClient.Properties.Resources._05Submarine, meret);
 								letett.Add(new Hajok(shippos.X, shippos.Y, hajo, meret));
 								felv = false;
-								//CommonData.Instance.Hajotipus = hajotipusok.None;
+								CommonData.Instance.Hajotipus = hajotipusok.None;
 							} else if (felv && !horizont) {
 								meret = new Size((int)negyzetx, (int)negyzety * 1);
 								Bitmap x = new Bitmap(BattleshipClient.Properties.Resources._02Battleship);
