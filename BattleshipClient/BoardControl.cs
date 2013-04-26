@@ -9,9 +9,12 @@ using System.Windows.Forms;
 
 namespace BattleshipClient {
 	public delegate void HajoHandler();
+	public delegate void StartHandler();
 
 	public partial class BoardControl : UserControl {
 		public event HajoHandler HajoLeszed;
+		public event StartHandler StartOK;
+
 		public int X { get; set; }
 		public int Y { get; set; }
 
@@ -28,6 +31,11 @@ namespace BattleshipClient {
 			segit.Location = new Point(5, 5);
 			this.Controls.Add(segit);
 			segit.HajoDisable += new HajoDisableHandler(segit_HajoDisable);
+			segit.StartEnable += new StartEnableHandler(segit_StartEnable);
+		}
+
+		void segit_StartEnable() {
+			TriggerStartOK();
 		}
 
 		void segit_HajoDisable() {
@@ -42,7 +50,12 @@ namespace BattleshipClient {
 				HajoLeszed();
 			}
 		}
-
+		
+		void TriggerStartOK() {
+			if (StartOK != null) {
+				StartOK();
+			}
+		}
 		/*private void BoardControl_Paint(object sender, PaintEventArgs e) {
 	int[] szam = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
 	Label[] labels = new Label[Y];

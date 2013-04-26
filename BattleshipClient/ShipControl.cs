@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 
 namespace BattleshipClient {
-	public enum hajotipusok { AircraftCarrier, Battleship, Cruiser, Destroyer, Submarine };
+	public enum hajotipusok { None = 0, AircraftCarrier = 1, Battleship = 2, Cruiser = 3, Destroyer = 4, Submarine = 5 };
 	public delegate void ShipRemoveHandler();
 
 	public partial class ShipControl : UserControl {

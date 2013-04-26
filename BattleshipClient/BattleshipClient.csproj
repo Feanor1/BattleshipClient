@@ -86,6 +86,7 @@
     <Compile Include="GamesControl.Designer.cs">
       <DependentUpon>GamesControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Hajok.cs" />
     <Compile Include="TableHit.cs">
       <SubType>Component</SubType>
     </Compile>

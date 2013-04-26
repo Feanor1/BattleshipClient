@@ -38,6 +38,7 @@ namespace BattleshipClient {
 			ps = psa;
 
 			this.boardControl2.HajoLeszed += new HajoHandler(boardControl2_HajoLeszed);
+			this.boardControl2.StartOK += new StartHandler(boardControl2_StartOK);
 
 			Hajok = shipControl1.Hajok;
 			Hkiv = shipControl1.Hkivalasztva;
@@ -59,6 +60,10 @@ namespace BattleshipClient {
 			//panel2.Visible = false;
 		//	this.Controls.Add(panel2);
         }
+
+		void boardControl2_StartOK() {
+			button2.Enabled = true;
+		}
 
 		void boardControl2_HajoLeszed() {
 			Hajo = boardControl2.Hajo;
