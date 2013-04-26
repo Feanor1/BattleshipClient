@@ -13,11 +13,12 @@ namespace BattleshipClient {
 	public partial class CreateControl : UserControl {
 		public int X { get; private set; }
 		public int Y { get; private set; }
-		
+		GameHandler gh;
 		public event BezarHandler Bezar;
 
 		public CreateControl() {
 			InitializeComponent();
+			gh = new GameHandler(CommonData.Instance.Ps);
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
@@ -30,10 +31,9 @@ namespace BattleshipClient {
 				MessageBox.Show("Hibás X/Y paraméter" + er.ToString());
 			}
 			
-			bool valasz = true; //false lesz
-			//valasz = gh.CreateGame(x, y);
+			bool valasz = false; 
+			valasz = gh.CreateGame(X, Y);
 			if (valasz) {
-				MessageBox.Show("Tábla létrehozva!");
 				TriggerBezar();
 			} else {
 				MessageBox.Show("Hibás X/Y paraméterek!");

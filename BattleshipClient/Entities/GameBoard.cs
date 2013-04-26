@@ -157,8 +157,8 @@ namespace BattleshipClient
 				ShipPositions.Add(shipposition);
 				return true;
 			}
-			catch (Exception e)
-			{
+			catch (Exception e) {
+				MessageBox.Show("Hiba: " + e.ToString());
 				return false;
 			}
 		}

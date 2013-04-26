@@ -32,7 +32,7 @@
 			this.DoubleBuffered = true;
 			this.Name = "BoardControl";
 			this.Size = new System.Drawing.Size(430, 430);
-			this.Paint += new System.Windows.Forms.PaintEventHandler(this.BoardControl_Paint);
+			//this.Paint += new System.Windows.Forms.PaintEventHandler(this.BoardControl_Paint);
 			this.ResumeLayout(false);
 
 		}

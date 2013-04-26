@@ -9,47 +9,66 @@ using System.Windows.Forms;
 using System.Reflection;
 
 namespace BattleshipClient {
-
+	
     public partial class GameField : Form {
+		
+		#region deklaracio
+
 		UserAccount usera;
 		Form1 alap;
 		GameHandler gh;
 		ChatHandler ch;
 		PortSender ps;
-		Panel panel1; //játékos
-		Panel panel2; //ellenfél
 		Bitmap hajo;
 		public hajotipusok Hajok { get; set; }
 		public bool Hkiv { get; set; }
 		public int X { get; private set; }
 		public int Y { get; private set; }
 
-        public GameField(PortSender psa, UserAccount usa)
+		public hajotipusok Hajo { get; set; }
+		public int Hajoszam { get; set; }
+		public bool HajoLeteve { get; set; }
+
+		#endregion
+
+		public GameField(PortSender psa, UserAccount usa)
         {
             InitializeComponent();
 			usera = usa;
 			ps = psa;
+
+			this.boardControl2.HajoLeszed += new HajoHandler(boardControl2_HajoLeszed);
 
 			Hajok = shipControl1.Hajok;
 			Hkiv = shipControl1.Hkivalasztva;
 
 			gh = new GameHandler(ps);
 			ch = new ChatHandler(ps);
-			panel1 = new Panel();
-			panel1.Location = new Point(12, 46);
-			panel1.Name = "panel1";
-			panel1.Size = new Size(300, 300);
-			panel1.BackColor = Color.Aqua;
-			panel1.Visible = false;
-			this.Controls.Add(panel1);
+			//panel1 = new Panel();
+			//panel1.Location = new Point(12, 46);
+			//panel1.Name = "panel1";
+			//panel1.Size = new Size(300, 300);
+			//panel1.BackColor = Color.Aqua;
+			//panel1.Visible = false;
+			//this.Controls.Add(panel1);
 
-			panel2 = new Panel();
-			panel2.Location = new Point(324, 46);
-			panel2.Size = new Size(300, 300);
-			panel2.BackColor = Color.Aqua;
-			panel2.Visible = false;
+			//panel2 = new Panel();
+			//panel2.Location = new Point(324, 46);
+			//panel2.Size = new Size(300, 300);
+			//panel2.BackColor = Color.Aqua;
+			//panel2.Visible = false;
 		//	this.Controls.Add(panel2);
         }
+
+		void boardControl2_HajoLeszed() {
+			Hajo = boardControl2.Hajo;
+			Hajoszam = boardControl2.Hajoszam;
+			HajoLeteve = boardControl2.HajoLeteve;
+			shipControl1.Hajo = Hajo;
+			shipControl1.HajoLeteve = HajoLeteve;
+			shipControl1.Hajoszam = Hajoszam;
+			shipControl1.Refresh();
+		}
 
 		private void button2_Click(object sender, EventArgs e) {
 			
@@ -76,11 +95,12 @@ namespace BattleshipClient {
 			labelPlayerField.Visible = true;
 			boardControl1.X = X;
 			boardControl1.Y = Y;
-			boardControl1.Visible = true;
+			//boardControl1.Visible = true; //ellenfél
+			boardControl1.Visible = false;
 			boardControl2.X = X;
 			boardControl2.Y = Y;
 			labelEnemy.Visible = true;
-			boardControl2.Visible = true;
+			boardControl2.Visible = true; //én
 			button2.Visible = true;
 			gamesControl1.Visible = false;
 		}

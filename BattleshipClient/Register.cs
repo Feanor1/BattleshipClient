@@ -13,22 +13,20 @@ namespace BattleshipClient
     {
 		bool tipus;
 		bool valasz = false;
+		PortSender ps;
+		UserHandler uh;
+		string nev;
+		string pass;
 
         public Register()
         {
             InitializeComponent();
 			Port.SelectedIndex = 0;
-			PortSender ps = new PortSender();
-			UserHandler uh = new UserHandler(ps);
-			
-			
-			string nev;
-			string pass;
-			
+			ps = new PortSender();
+			uh = new UserHandler(ps);
+						
 			nev = textUserName.Text;
-			pass = textPass.Text;
-
-			
+			pass = textPass.Text;			
         }
 
 		private void comboAccountType_SelectedValueChanged(object sender, EventArgs e) {
@@ -47,7 +45,7 @@ namespace BattleshipClient
 
 		private void buttonOk_Click(object sender, EventArgs e) {
 			if (textPass.Text.Equals(textVerify.Text)) {
-				//valasz = uh.Register(nev, pass, tipus);
+				valasz = uh.Register(nev, pass, tipus);
 			} else {
 				MessageBox.Show("Nem egyezik a jelszó!");
 			}
