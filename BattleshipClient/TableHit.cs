@@ -107,8 +107,8 @@ namespace BattleshipClient
                         foreach (ShipPosition sp in gb.ShipPositions)
                         {
                             //if ((sp.OwnerIsAlphaPlayer) && (gb.AlphaPlayer == ua.Name) || (sp.OwnerIsBetaPlayer) && (gb.BetaPlayer == ua.Name))
-                            
-                            if (gb.activePlayerIsAlpha ==sp.OwnerIsBetaPlayer)
+
+                            if (gb.AlphaPlayer.Equals(ua.Name) == sp.OwnerIsBetaPlayer)
                             {
 
                                 if (sp.Horizontal && sp.Y == kockaY && sp.X + sp.Size > kockaX && sp.X <= kockaX)
