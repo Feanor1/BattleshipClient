@@ -82,15 +82,16 @@ namespace BattleshipClient
                         {
                             volte = true;
                         }
+                        i++;
                     }
 
 
                     // Volt-e már a lövés
                     if (!volte)
                     {
-
+                        
                         Graphics p1em = this.CreateGraphics();
-
+                        //saját hülye megoldás
                         lövések.Add(new int[] { kockaX, kockaY });
 
                         object[] args = new object[2];
@@ -100,15 +101,42 @@ namespace BattleshipClient
                         gb = (GameBoard)ps.Send("hitdetector", "Shoot", args);
 
 
+                        bool talal=false;
+                        bool sülyed=false;
+
+                        foreach (ShipPosition sp in gb.ShipPositions)
+                        {
+                            //if ((sp.OwnerIsAlphaPlayer) && (gb.AlphaPlayer == ua.Name) || (sp.OwnerIsBetaPlayer) && (gb.BetaPlayer == ua.Name))
+                            
+                            if (gb.activePlayerIsAlpha ==sp.OwnerIsBetaPlayer)
+                            {
+
+                                if (sp.Horizontal && sp.Y == kockaY && sp.X + sp.Size > kockaX && sp.X <= kockaX)
+                                {
+                                    talal = true;
+                                    sülyed = sp.Sunk;
+                                }
+                                if (sp.Vertical && sp.X == kockaX && sp.Y + sp.Size > kockaY && sp.Y <= kockaY)
+                                {
+                                    talal = true;
+                                    sülyed = sp.Sunk;
+                                }
+                            }
+                        }
+
+
                         //Talált/Nem
-                        if (true)
+                        if (talal)
                         {
                             p1em.FillEllipse(new SolidBrush(Color.Red), segedX * kockaX, segedY * kockaY, segedX, segedY);
+                            if (sülyed) MessageBox.Show("Talált Sülyedt");
+                        
                         }
-                        //else
-                        //{
-                        //    p1em.FillEllipse(new SolidBrush(Color.Green), segedX * kockaX, segedY * kockaY, segedX, segedY);
-                        //}
+                        else
+                            p1em.FillEllipse(new SolidBrush(Color.Green), segedX * kockaX, segedY * kockaY, segedX, segedY);
+
+
+                        p1em.Dispose();
                     }
                     else
                     {
