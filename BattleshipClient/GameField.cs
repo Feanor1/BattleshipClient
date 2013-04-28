@@ -58,6 +58,7 @@ namespace BattleshipClient {
 
 		void PlayerControl_StartOK() {
 			Sp = PlayerControl.SP;
+			bool ellensegkesz = true; //false
 			//for (int i = 0; i < Sp.Count; i++) {
 			//    object[] args = new object[3];
 			//    args[0] = Sp[i].Horizontal = boardControl2.SP[i].Horizontal;
@@ -65,8 +66,14 @@ namespace BattleshipClient {
 			//    args[2] = Sp[i].Hits;
 			//    ps.Send("game", "SetShipPositions", args);
 			//}
-			button2.Enabled = true;
-			EnemyControl.Visible = true;
+			object[] args = new object[0];
+
+			//ellensegkesz = (bool)ps.Send("game", "EnemyAddedShipPositions", args);
+			if (ellensegkesz) {
+				start.Enabled = true;
+				EnemyControl.Visible = true;
+				shipControl1.Visible = false;
+			}			
 		}
 
 		void PlayerControl_HajoLeszed() {
@@ -87,7 +94,7 @@ namespace BattleshipClient {
 			object[] args = new object[1];
 			args[0] = uj.IdInDatabase;
 			ps.Send("game", "StartGame", args);
-			button2.Text = "Waiting...";
+			start.Text = "Waiting...";
 		}
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -117,7 +124,7 @@ namespace BattleshipClient {
 			PlayerControl.Y = Y;
 			labelEnemy.Visible = true;
 			PlayerControl.Visible = true; //én
-			button2.Visible = true;
+			start.Visible = true;
 			gamesControl1.Visible = false;
 		}
 

@@ -43,7 +43,7 @@
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.rulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.button2 = new System.Windows.Forms.Button();
+			this.start = new System.Windows.Forms.Button();
 			this.gamesControl1 = new BattleshipClient.GamesControl();
 			this.shipControl1 = new BattleshipClient.ShipControl();
 			this.chatControl1 = new BattleshipClient.ChatControl();
@@ -174,15 +174,15 @@
 			// 
 			// button2
 			// 
-			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(740, 624);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 15;
-			this.button2.Text = "Start";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Visible = false;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
+			this.start.Enabled = false;
+			this.start.Location = new System.Drawing.Point(740, 624);
+			this.start.Name = "button2";
+			this.start.Size = new System.Drawing.Size(75, 23);
+			this.start.TabIndex = 15;
+			this.start.Text = "Start";
+			this.start.UseVisualStyleBackColor = true;
+			this.start.Visible = false;
+			this.start.Click += new System.EventHandler(this.button2_Click);
 			// 
 			// gamesControl1
 			// 
@@ -227,7 +227,7 @@
 			this.Controls.Add(this.shipControl1);
 			this.Controls.Add(this.chatControl1);
 			this.Controls.Add(this.createControl1);
-			this.Controls.Add(this.button2);
+			this.Controls.Add(this.start);
 			this.Controls.Add(this.labelPlayerField);
 			this.Controls.Add(this.labelEnemy);
 			this.Controls.Add(this.menuStrip1);
@@ -259,7 +259,7 @@
         private System.Windows.Forms.ToolStripMenuItem highscoreToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem rulesToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutUsToolStripMenuItem;
-		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button start;
 		private CreateControl createControl1;
 		private ChatControl chatControl1;
 		private ShipControl shipControl1;

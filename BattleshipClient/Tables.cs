@@ -27,7 +27,6 @@ namespace BattleshipClient {
 		Size meret;
 		int aircraftc, battlesh, cruis, destr, subm;
 		Bitmap hajo;
-		//List<Bitmap> letett;
 		List<Hajok> letett;
 		bool shipplaceable;
 		string player;
@@ -230,6 +229,7 @@ namespace BattleshipClient {
 								letett.Add(new Hajok(shippos.X, shippos.Y, hajo, meret));
 								hajoszamlalo++;
 								felv = false;
+								TriggerHajoDisable();
 								CommonData.Instance.Hajotipus = hajotipusok.None;
 							} else if (felv && !horizont) {
 								meret = new Size((int)negyzetx, (int)negyzety * 4);
@@ -351,10 +351,8 @@ namespace BattleshipClient {
 					}
 				if (hajoszamlalo == 7) {
 					//for (int i = 0; i < sp.Count; i++) {
-					//    object[] args = new object[3];
-					//    args[0] = sp[i].Horizontal = horizont;
-					//    args[1] = sp[i].OwnerIsAlphaPlayer;
-					//    args[2] = sp[i].Hits;
+					//    object[] args = new object[1];
+					//    args[0] = (ShipPosition)sp[i];
 					//    ps.Send("game", "SetShipPositions", args);
 					//}
 					TriggerStartEnable();

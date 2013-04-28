@@ -20,7 +20,9 @@ namespace BattleshipClient
 			InitializeComponent();
 			if (ua != null) {
 				//listBox1.Items.Add(ua.Gameboards.ToString());
+				
 				List<GameBoard> a = ua.Gameboards;
+
 				//listBox1.DataSource = ua.Gameboards;
 				foreach (GameBoard item in a) {
 					string id = item.IdInDatabase.ToString();
