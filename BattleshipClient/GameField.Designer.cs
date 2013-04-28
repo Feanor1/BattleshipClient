@@ -33,7 +33,6 @@
 			this.labelEnemy = new System.Windows.Forms.Label();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.highscoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.suspendGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -46,8 +45,6 @@
 			this.aboutUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.button2 = new System.Windows.Forms.Button();
 			this.gamesControl1 = new BattleshipClient.GamesControl();
-			this.boardControl2 = new BattleshipClient.BoardControl();
-			this.boardControl1 = new BattleshipClient.BoardControl();
 			this.shipControl1 = new BattleshipClient.ShipControl();
 			this.chatControl1 = new BattleshipClient.ChatControl();
 			this.createControl1 = new BattleshipClient.CreateControl();
@@ -90,7 +87,6 @@
 			// fileToolStripMenuItem
 			// 
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newGameToolStripMenuItem,
             this.highscoreToolStripMenuItem,
             this.suspendGameToolStripMenuItem,
             this.toolStripMenuItem1,
@@ -99,36 +95,31 @@
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
 			this.fileToolStripMenuItem.Text = "File";
 			// 
-			// newGameToolStripMenuItem
-			// 
-			this.newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
-			this.newGameToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-			this.newGameToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-			this.newGameToolStripMenuItem.Text = "Select Player";
-			// 
 			// highscoreToolStripMenuItem
 			// 
 			this.highscoreToolStripMenuItem.Name = "highscoreToolStripMenuItem";
-			this.highscoreToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+			this.highscoreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.highscoreToolStripMenuItem.Text = "Highscore";
+			this.highscoreToolStripMenuItem.Click += new System.EventHandler(this.highscoreToolStripMenuItem_Click);
 			// 
 			// suspendGameToolStripMenuItem
 			// 
+			this.suspendGameToolStripMenuItem.Enabled = false;
 			this.suspendGameToolStripMenuItem.Name = "suspendGameToolStripMenuItem";
-			this.suspendGameToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+			this.suspendGameToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.suspendGameToolStripMenuItem.Text = "Suspend game";
 			this.suspendGameToolStripMenuItem.Click += new System.EventHandler(this.suspendGameToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(156, 6);
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
 			this.exitToolStripMenuItem.ShortcutKeyDisplayString = "";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -146,12 +137,14 @@
 			this.myStatisticsToolStripMenuItem.Name = "myStatisticsToolStripMenuItem";
 			this.myStatisticsToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
 			this.myStatisticsToolStripMenuItem.Text = "Player1 statistics";
+			this.myStatisticsToolStripMenuItem.Click += new System.EventHandler(this.myStatisticsToolStripMenuItem_Click);
 			// 
 			// highscoreToolStripMenuItem1
 			// 
 			this.highscoreToolStripMenuItem1.Name = "highscoreToolStripMenuItem1";
 			this.highscoreToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
 			this.highscoreToolStripMenuItem1.Text = "Player2 statistics";
+			this.highscoreToolStripMenuItem1.Click += new System.EventHandler(this.highscoreToolStripMenuItem1_Click);
 			// 
 			// aboutToolStripMenuItem
 			// 
@@ -170,12 +163,14 @@
 			this.rulesToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
 			this.rulesToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
 			this.rulesToolStripMenuItem.Text = "Rules";
+			this.rulesToolStripMenuItem.Click += new System.EventHandler(this.rulesToolStripMenuItem_Click);
 			// 
 			// aboutUsToolStripMenuItem
 			// 
 			this.aboutUsToolStripMenuItem.Name = "aboutUsToolStripMenuItem";
 			this.aboutUsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
 			this.aboutUsToolStripMenuItem.Text = "About us";
+			this.aboutUsToolStripMenuItem.Click += new System.EventHandler(this.aboutUsToolStripMenuItem_Click);
 			// 
 			// button2
 			// 
@@ -191,33 +186,16 @@
 			// 
 			// gamesControl1
 			// 
-			this.gamesControl1.Location = new System.Drawing.Point(512, 58);
+			this.gamesControl1.Location = new System.Drawing.Point(556, 58);
 			this.gamesControl1.Name = "gamesControl1";
 			this.gamesControl1.Size = new System.Drawing.Size(256, 174);
 			this.gamesControl1.TabIndex = 31;
 			// 
-			// boardControl2
-			// 
-			this.boardControl2.Location = new System.Drawing.Point(10, 48);
-			this.boardControl2.Name = "boardControl2";
-			this.boardControl2.Size = new System.Drawing.Size(430, 430);
-			this.boardControl2.TabIndex = 30;
-			this.boardControl2.Visible = false;
-			this.boardControl2.X = 0;
-			this.boardControl2.Y = 0;
-			// 
-			// boardControl1
-			// 
-			this.boardControl1.Location = new System.Drawing.Point(556, 48);
-			this.boardControl1.Name = "boardControl1";
-			this.boardControl1.Size = new System.Drawing.Size(430, 430);
-			this.boardControl1.TabIndex = 29;
-			this.boardControl1.Visible = false;
-			this.boardControl1.X = 0;
-			this.boardControl1.Y = 0;
-			// 
 			// shipControl1
 			// 
+			this.shipControl1.Hajo = BattleshipClient.hajotipusok.None;
+			this.shipControl1.HajoLeteve = false;
+			this.shipControl1.Hajoszam = 0;
 			this.shipControl1.Location = new System.Drawing.Point(531, 484);
 			this.shipControl1.Name = "shipControl1";
 			this.shipControl1.Size = new System.Drawing.Size(477, 134);
@@ -246,8 +224,6 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1008, 730);
 			this.Controls.Add(this.gamesControl1);
-			this.Controls.Add(this.boardControl2);
-			this.Controls.Add(this.boardControl1);
 			this.Controls.Add(this.shipControl1);
 			this.Controls.Add(this.chatControl1);
 			this.Controls.Add(this.createControl1);
@@ -276,8 +252,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem statisticsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newGameToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem highscoreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem myStatisticsToolStripMenuItem;
@@ -288,8 +263,6 @@
 		private CreateControl createControl1;
 		private ChatControl chatControl1;
 		private ShipControl shipControl1;
-		private BoardControl boardControl1;
-		private BoardControl boardControl2;
         private System.Windows.Forms.ToolStripMenuItem suspendGameToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
 		private GamesControl gamesControl1;

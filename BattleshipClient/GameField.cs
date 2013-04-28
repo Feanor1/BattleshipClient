@@ -20,6 +20,8 @@ namespace BattleshipClient {
 		ChatHandler ch;
 		PortSender ps;
 		Bitmap hajo;
+		BoardControl EnemyControl;
+		BoardControl PlayerControl;
 		public hajotipusok Hajok { get; set; }
 		public bool Hkiv { get; set; }
 		public int X { get; private set; }
@@ -36,33 +38,26 @@ namespace BattleshipClient {
             InitializeComponent();
 			usera = usa;
 			ps = psa;
-
-			this.boardControl2.HajoLeszed += new HajoHandler(boardControl2_HajoLeszed);
-			this.boardControl2.StartOK += new StartHandler(boardControl2_StartOK);
+			EnemyControl = new BoardControl();
+			EnemyControl.Location = new Point(556, 58);
+			this.Controls.Add(EnemyControl);
+			PlayerControl = new BoardControl();
+			EnemyControl.Visible = false;
+			PlayerControl.Location = new Point(10, 58);
+			this.Controls.Add(PlayerControl);
+			PlayerControl.Visible = false;
+			this.PlayerControl.HajoLeszed += new HajoHandler(PlayerControl_HajoLeszed);
+			this.PlayerControl.StartOK += new StartHandler(PlayerControl_StartOK);
 
 			Hajok = shipControl1.Hajok;
 			Hkiv = shipControl1.Hkivalasztva;
 
 			gh = new GameHandler(ps);
 			ch = new ChatHandler(ps);
-			//panel1 = new Panel();
-			//panel1.Location = new Point(12, 46);
-			//panel1.Name = "panel1";
-			//panel1.Size = new Size(300, 300);
-			//panel1.BackColor = Color.Aqua;
-			//panel1.Visible = false;
-			//this.Controls.Add(panel1);
-
-			//panel2 = new Panel();
-			//panel2.Location = new Point(324, 46);
-			//panel2.Size = new Size(300, 300);
-			//panel2.BackColor = Color.Aqua;
-			//panel2.Visible = false;
-		//	this.Controls.Add(panel2);
         }
 
-		void boardControl2_StartOK() {
-			Sp = boardControl2.SP;
+		void PlayerControl_StartOK() {
+			Sp = PlayerControl.SP;
 			//for (int i = 0; i < Sp.Count; i++) {
 			//    object[] args = new object[3];
 			//    args[0] = Sp[i].Horizontal = boardControl2.SP[i].Horizontal;
@@ -71,13 +66,13 @@ namespace BattleshipClient {
 			//    ps.Send("game", "SetShipPositions", args);
 			//}
 			button2.Enabled = true;
-			boardControl1.Visible = true;
+			EnemyControl.Visible = true;
 		}
 
-		void boardControl2_HajoLeszed() {
-			Hajo = boardControl2.Hajo;
-			Hajoszam = boardControl2.Hajoszam;
-			HajoLeteve = boardControl2.HajoLeteve;
+		void PlayerControl_HajoLeszed() {
+			Hajo = PlayerControl.Hajo;
+			Hajoszam = PlayerControl.Hajoszam;
+			HajoLeteve = PlayerControl.HajoLeteve;
 			shipControl1.Hajo = Hajo;
 			shipControl1.HajoLeteve = HajoLeteve;
 			shipControl1.Hajoszam = Hajoszam;
@@ -114,14 +109,14 @@ namespace BattleshipClient {
 			chatControl1.Visible = true;
 			shipControl1.Visible = true;
 			labelPlayerField.Visible = true;
-			boardControl1.X = X;
-			boardControl1.Y = Y;
+			EnemyControl.X = X;
+			EnemyControl.Y = Y;
 			//boardControl1.Visible = true; //ellenfél
-			boardControl1.Visible = false;
-			boardControl2.X = X;
-			boardControl2.Y = Y;
+			EnemyControl.Visible = false;
+			PlayerControl.X = X;
+			PlayerControl.Y = Y;
 			labelEnemy.Visible = true;
-			boardControl2.Visible = true; //én
+			PlayerControl.Visible = true; //én
 			button2.Visible = true;
 			gamesControl1.Visible = false;
 		}
@@ -159,9 +154,6 @@ namespace BattleshipClient {
 						hajo = new Bitmap(BattleshipClient.Properties.Resources._05Submarine, meret);
 						break;
 				}
-			}
-			if (e.Button == System.Windows.Forms.MouseButtons.Right) {
-				
 			}
 		}
 
@@ -202,6 +194,36 @@ namespace BattleshipClient {
 				}
 				g.Dispose();
 			}
+		}
+
+		private void myStatisticsToolStripMenuItem_Click(object sender, EventArgs e) {
+			MessageBox.Show("Under construction");
+		}
+
+		private void highscoreToolStripMenuItem1_Click(object sender, EventArgs e) {
+			MessageBox.Show("Under construction");
+		}
+
+		private void rulesToolStripMenuItem_Click(object sender, EventArgs e) {
+			Rules nj = new Rules();
+			DialogResult resu;
+			resu = nj.ShowDialog();
+			if (DialogResult.Cancel == resu) {
+				this.Focus();
+			}
+		}
+
+		private void aboutUsToolStripMenuItem_Click(object sender, EventArgs e) {
+			About rule = new About();
+			DialogResult resu;
+			resu = rule.ShowDialog();
+			if (DialogResult.Cancel == resu) {
+				this.Focus();
+			}
+		}
+
+		private void highscoreToolStripMenuItem_Click(object sender, EventArgs e) {
+			MessageBox.Show("Under construction");
 		}
     }
 }

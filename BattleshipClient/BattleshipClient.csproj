@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
     <Compile Include="BoardControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -87,6 +93,12 @@
       <DependentUpon>GamesControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Hajok.cs" />
+    <Compile Include="Rules.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rules.Designer.cs">
+      <DependentUpon>Rules.cs</DependentUpon>
+    </Compile>
     <Compile Include="TableHit.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -122,6 +134,9 @@
       <DependentUpon>CreateControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserHandlercs.cs" />
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BoardControl.resx">
       <DependentUpon>BoardControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -153,6 +168,9 @@
     <EmbeddedResource Include="CreateControl.resx">
       <DependentUpon>CreateControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Rules.resx">
+      <DependentUpon>Rules.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ShipControl.resx">
       <DependentUpon>ShipControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,9 +183,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Entities\BackgroundImage.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BackgroundImage.jpg" />
