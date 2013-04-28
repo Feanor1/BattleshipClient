@@ -24,7 +24,7 @@ namespace BattleshipClient {
 		public bool Hkiv { get; set; }
 		public int X { get; private set; }
 		public int Y { get; private set; }
-
+		List<ShipPosition> Sp { get; set; }
 		public hajotipusok Hajo { get; set; }
 		public int Hajoszam { get; set; }
 		public bool HajoLeteve { get; set; }
@@ -62,7 +62,16 @@ namespace BattleshipClient {
         }
 
 		void boardControl2_StartOK() {
+			Sp = boardControl2.SP;
+			//for (int i = 0; i < Sp.Count; i++) {
+			//    object[] args = new object[3];
+			//    args[0] = Sp[i].Horizontal = boardControl2.SP[i].Horizontal;
+			//    args[1] = Sp[i].OwnerIsAlphaPlayer;
+			//    args[2] = Sp[i].Hits;
+			//    ps.Send("game", "SetShipPositions", args);
+			//}
 			button2.Enabled = true;
+			boardControl1.Visible = true;
 		}
 
 		void boardControl2_HajoLeszed() {
@@ -72,11 +81,18 @@ namespace BattleshipClient {
 			shipControl1.Hajo = Hajo;
 			shipControl1.HajoLeteve = HajoLeteve;
 			shipControl1.Hajoszam = Hajoszam;
-			shipControl1.Refresh();
+			shipControl1.ShipControl_ShipRemove();
 		}
 
 		private void button2_Click(object sender, EventArgs e) {
-			
+			GameBoard uj = new GameBoard();
+			uj.AlphaPlayer = this.Name;
+			usera.Gameboards.Add(uj);
+			uj.IdInDatabase = usera.Gameboards[usera.Gameboards.Count - 1].IdInDatabase + 1;
+			object[] args = new object[1];
+			args[0] = uj.IdInDatabase;
+			ps.Send("game", "StartGame", args);
+			button2.Text = "Waiting...";
 		}
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e) {

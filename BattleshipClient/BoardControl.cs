@@ -21,6 +21,7 @@ namespace BattleshipClient {
 		public hajotipusok Hajo { get; set; }
 		public int Hajoszam { get; set; }
 		public bool HajoLeteve { get; set; }
+		public List<ShipPosition> SP { get; set; }
 
 		Tables segit;
 		public BoardControl() {
@@ -35,6 +36,7 @@ namespace BattleshipClient {
 		}
 
 		void segit_StartEnable() {
+			SP = segit.sp;
 			TriggerStartOK();
 		}
 

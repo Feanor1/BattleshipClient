@@ -26,7 +26,7 @@ namespace BattleshipClient {
 			ShipRemove += new ShipRemoveHandler(ShipControl_ShipRemove);
 		}
 
-		void ShipControl_ShipRemove() {
+		public void ShipControl_ShipRemove() {
 			switch (Hajo) {
 				case hajotipusok.AircraftCarrier:
 					if (Hajoszam == 0) {
