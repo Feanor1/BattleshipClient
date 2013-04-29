@@ -67,7 +67,7 @@ namespace BattleshipClient
 			}
 			get
 			{
-				return sizex;
+				return sizey;
 			}
 		}
 
@@ -95,13 +95,16 @@ namespace BattleshipClient
 				int betacount = 0;
 				foreach (ShipPosition current in ShipPositions)
 				{
-					if (current.OwnerIsAlphaPlayer && current.Sunk) alphacount++;
-					else betacount++;
+                    if (current.Sunk)
+                    {
+                        if (current.OwnerIsAlphaPlayer) alphacount++;
+                        else betacount++;
+                    }
 				}
 
-				if (alphacount == ShipPositions.Count / 2)
+				if ((alphacount != 0) && (alphacount == ShipPositions.Count / 2))
 					return BetaPlayer;
-				if (betacount == ShipPositions.Count / 2)
+                if ((betacount != 0) && (betacount == ShipPositions.Count / 2))
 					return AlphaPlayer;
 
 				throw new Exception("The game is still on.");
@@ -189,5 +192,10 @@ namespace BattleshipClient
 		public GameBoard()
 		{
 		}
+
+        public override string ToString()
+        {
+            return "(" + AlphaPlayer + ";" + BetaPlayer + "): " + "ID: " + IdInDatabase + " ; " + "X: " + sizex + " ; " + "Y: " + sizey;
+        }
 	}
 }

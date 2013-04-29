@@ -15,7 +15,6 @@ namespace BattleshipClient {
 		#region deklaracio
 
 		UserAccount usera;
-		Form1 alap;
 		GameHandler gh;
 		ChatHandler ch;
 		PortSender ps;
@@ -30,6 +29,7 @@ namespace BattleshipClient {
 		public hajotipusok Hajo { get; set; }
 		public int Hajoszam { get; set; }
 		public bool HajoLeteve { get; set; }
+		public Form1 Alap { get; set; }
 
 		#endregion
 
@@ -53,11 +53,13 @@ namespace BattleshipClient {
 			Hkiv = shipControl1.Hkivalasztva;
 
 			gh = new GameHandler(ps);
+            CommonData.Instance.gh = gh;
 			ch = new ChatHandler(ps);
         }
 
 		void PlayerControl_StartOK() {
-			Sp = PlayerControl.SP;
+			/*Sp = PlayerControl.SP;
+
 			bool ellensegkesz = true; //false
 			//for (int i = 0; i < Sp.Count; i++) {
 			//    object[] args = new object[3];
@@ -73,7 +75,8 @@ namespace BattleshipClient {
 				start.Enabled = true;
 				EnemyControl.Visible = true;
 				shipControl1.Visible = false;
-			}			
+			}	*/
+
 		}
 
 		void PlayerControl_HajoLeszed() {
@@ -105,35 +108,55 @@ namespace BattleshipClient {
 			object[] args = new object[0];
 			bool felfuggesztve = false;
 			felfuggesztve = (bool)ps.Send("gamesuspender", "GameSuspend", args);
-			alap = new Form1();
-			alap.Show();
+			Alap.Show();
 		}
 
 		private void createControl1_Bezar() {
 			X = createControl1.X;
 			Y = createControl1.Y;
+			
+			EnemyControl = new BoardControl();
+			EnemyControl.Location = new Point(556, 58);
+			this.Controls.Add(EnemyControl);
+			PlayerControl = new BoardControl();
+			EnemyControl.Visible = false;
+			PlayerControl.Location = new Point(10, 58);
+			this.Controls.Add(PlayerControl);
+			PlayerControl.Visible = false;
+			this.PlayerControl.HajoLeszed += new HajoHandler(PlayerControl_HajoLeszed);
+			this.PlayerControl.StartOK += new StartHandler(PlayerControl_StartOK);
+			
+
 			this.Controls.Remove(createControl1);
 			chatControl1.Visible = true;
 			shipControl1.Visible = true;
 			labelPlayerField.Visible = true;
 			EnemyControl.X = X;
 			EnemyControl.Y = Y;
-			//boardControl1.Visible = true; //ellenfél
+            CommonData.Instance.Bcjoiner = EnemyControl;//join playere
 			EnemyControl.Visible = false;
 			PlayerControl.X = X;
 			PlayerControl.Y = Y;
 			labelEnemy.Visible = true;
 			PlayerControl.Visible = true; //én
 			start.Visible = true;
+            CommonData.Instance.StartGomb = start;
 			gamesControl1.Visible = false;
+
+            if (CommonData.Instance.GameCreator)
+            {
+                if (!gh.StartGame(0))
+                {
+                    MessageBox.Show("Problem?");
+                }
+            }
 		}
 
         private void suspendGameToolStripMenuItem_Click(object sender, EventArgs e) {
             object[] args = new object[0];
             bool felfuggesztve = false;
             felfuggesztve = (bool)ps.Send("gamesuspender", "GameSuspend", args);
-            alap = new Form1();
-            alap.Show();
+			Close();
         }
 
 		private void GameField_MouseClick(object sender, MouseEventArgs e) {

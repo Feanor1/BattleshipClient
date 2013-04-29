@@ -47,6 +47,7 @@ namespace BattleshipClient {
 		#endregion
 
 		public Tables(int x, int y) : base() {
+
 			#region ertekadas
 			ps = CommonData.Instance.Ps;
 			hajoszamlalo = 0;
@@ -171,41 +172,22 @@ namespace BattleshipClient {
 				hajotipusok ship = CommonData.Instance.Hajotipus;
 
 				#region hajo elhelyezes
+                shippos.Horizontal = horizont;
+                shippos.X = (int)(((float)e.X)/negyzetx);
+                shippos.Y = (int)(((float)e.Y)/negyzety);
+                CommonData.Instance.Hajotipus = hajotipusok.None;
 
+                HajoLeteve = false;
 				switch (ship) {
 					case hajotipusok.AircraftCarrier:
 						Hajo = hajotipusok.AircraftCarrier;
 						if (aircraftc != 0) {
-							shippos.Size = 5;
-							shippos.Horizontal = horizont;
-							shippos.X = (int)(e.X - (negyzetx / 2));
-							shippos.Y = (int)(e.Y - (negyzety / 2));
+                            shippos.Size = 5;
 							aircraftc -= 1;
-							sp.Add(shippos);
-							//object[] args = new object[3];
-							//args[0] = shippos.Horizontal = horizont;
-							//args[1] = shippos.OwnerIsAlphaPlayer;
-							//args[2] = shippos.Size;
-							//ps.Send("game", "SetShipPositions", args);
-							HajoLeteve = true;
-							meret = new Size((int)negyzetx * 5, (int)negyzety);
-							if (felv && horizont) {								
-								hajo = new Bitmap(BattleshipClient.Properties.Resources._01aircraft_carrier, meret);
-								letett.Add(new Hajok(shippos.X , shippos.Y, hajo, meret));
-								hajoszamlalo++;
-								felv = false;
-								CommonData.Instance.Hajotipus = hajotipusok.None;
-								TriggerHajoDisable();
-							} else if (felv && !horizont) {
-								meret = new Size((int)negyzetx, (int)negyzety * 5);
-								Bitmap x = new Bitmap(BattleshipClient.Properties.Resources._01aircraft_carrier);
-								hajo = new Bitmap(BattleshipClient.Properties.Resources._01aircraft_carrier, meret);
-								hajo.RotateFlip(RotateFlipType.Rotate90FlipX);
-								letett.Add(new Hajok(shippos.X, shippos.Y, hajo, meret));
-								hajoszamlalo++;
-								felv = false;
-								TriggerHajoDisable();
-								CommonData.Instance.Hajotipus = hajotipusok.None;
+                            HajoLeteve = true;
+                            TriggerHajoDisable();
+                            if (felv) {
+                                hajo = BattleshipClient.Properties.Resources._01aircraft_carrier;
 							}
 						}
 						break;
@@ -213,101 +195,32 @@ namespace BattleshipClient {
 						Hajo = hajotipusok.Battleship;
 						if (battlesh != 0 ) {
 							shippos.Size = 4;
-							shippos.Horizontal = horizont;
-							shippos.X = (int)(e.X - (negyzetx / 2));
-							shippos.Y = (int)(e.Y - (negyzety / 2));
 							battlesh -= 1;
-							sp.Add(shippos);
-							//object[] args = new object[1];
-							//args[0] = shippos;
-							//ps.Send("game", "SetShipPositions", args);
 							HajoLeteve = true;
-							CommonData.Instance.Hajotipus = hajotipusok.None;
-							meret = new Size((int)negyzetx * 4, (int)negyzety);
-							if (felv && horizont) {								
-								hajo = new Bitmap(BattleshipClient.Properties.Resources._02Battleship, meret);
-								letett.Add(new Hajok(shippos.X, shippos.Y, hajo, meret));
-								hajoszamlalo++;
-								felv = false;
-								TriggerHajoDisable();
-								CommonData.Instance.Hajotipus = hajotipusok.None;
-							} else if (felv && !horizont) {
-								meret = new Size((int)negyzetx, (int)negyzety * 4);
-								Bitmap x = new Bitmap(BattleshipClient.Properties.Resources._02Battleship);
-								hajo = new Bitmap(BattleshipClient.Properties.Resources._02Battleship, meret);
-								hajo.RotateFlip(RotateFlipType.Rotate90FlipX);
-								letett.Add(new Hajok(shippos.X, shippos.Y, hajo, meret));
-								hajoszamlalo++;
-								felv = false;
-								TriggerHajoDisable();
-								CommonData.Instance.Hajotipus = hajotipusok.None;
-							}
+                            TriggerHajoDisable();
+                            if (felv)
+                                hajo = BattleshipClient.Properties.Resources._02Battleship;
 						}
 						break;
 					case hajotipusok.Cruiser:
 						Hajo = hajotipusok.Cruiser;
 						if (cruis != 0) {
 							shippos.Size = 3;
-							shippos.Horizontal = horizont;
-							shippos.X = (int)(e.X - (negyzetx / 2));
-							shippos.Y = (int)(e.Y - (negyzety / 2));
 							cruis -= 1;
-							sp.Add(shippos);
-							//object[] args = new object[1];
-							//args[0] = shippos;
-							//ps.Send("game", "SetShipPositions", args);
-							HajoLeteve = true;
-							meret = new Size((int)negyzetx * 3, (int)negyzety);
-							if (felv && horizont) {								
-								hajo = new Bitmap(BattleshipClient.Properties.Resources._03Cruiser, meret);
-								letett.Add(new Hajok(shippos.X, shippos.Y, hajo, meret));
-								hajoszamlalo++;
-								felv = false;
-								TriggerHajoDisable();
-								CommonData.Instance.Hajotipus = hajotipusok.None;
-							} else if (felv && !horizont) {
-								meret = new Size((int)negyzetx, (int)negyzety * 3);
-								Bitmap x = new Bitmap(BattleshipClient.Properties.Resources._02Battleship);
-								hajo = new Bitmap(BattleshipClient.Properties.Resources._03Cruiser, meret);
-								hajo.RotateFlip(RotateFlipType.Rotate90FlipX);
-								letett.Add(new Hajok(shippos.X, shippos.Y, hajo, meret));
-								hajoszamlalo++;
-								felv = false;
-								TriggerHajoDisable();
-								CommonData.Instance.Hajotipus = hajotipusok.None;
-							}
+                            HajoLeteve = true;
+                            TriggerHajoDisable();
+                            if (felv)
+                                hajo = BattleshipClient.Properties.Resources._03Cruiser;
 						}
 						break;
 					case hajotipusok.Destroyer:
 						Hajo = hajotipusok.Destroyer;
 						if (destr != 0) {
 							shippos.Size = 2;
-							shippos.Horizontal = horizont;
-							shippos.X = (int)(e.X - (negyzetx / 2));
-							shippos.Y = (int)(e.Y - (negyzety / 2));
 							destr -= 1;
-							sp.Add(shippos);
-							//object[] args = new object[1];
-							//args[0] = shippos;
-							//ps.Send("game", "SetShipPositions", args);
 							HajoLeteve = true;
-							meret = new Size((int)negyzetx * 2, (int)negyzety);
-							if (felv && horizont) {								
-								hajo = new Bitmap(BattleshipClient.Properties.Resources._04Destroyer, meret);
-								letett.Add(new Hajok(shippos.X, shippos.Y, hajo, meret));
-								hajoszamlalo++;
-								felv = false;
-								CommonData.Instance.Hajotipus = hajotipusok.None;
-							} else if (felv && !horizont) {
-								meret = new Size((int)negyzetx, (int)negyzety * 2);
-								Bitmap x = new Bitmap(BattleshipClient.Properties.Resources._02Battleship);
-								hajo = new Bitmap(BattleshipClient.Properties.Resources._04Destroyer, meret);
-								hajo.RotateFlip(RotateFlipType.Rotate90FlipX);
-								letett.Add(new Hajok(shippos.X, shippos.Y, hajo, meret));
-								hajoszamlalo++;
-								felv = false;
-								CommonData.Instance.Hajotipus = hajotipusok.None;
-							}
+                            if (felv)
+                                hajo = BattleshipClient.Properties.Resources._04Destroyer;
 							if (destr == 0) {
 								TriggerHajoDisable();
 							}
@@ -317,44 +230,38 @@ namespace BattleshipClient {
 						Hajo = hajotipusok.Submarine;
 						if (subm != 0) {
 							shippos.Size = 1;
-							shippos.Horizontal = horizont;
-							shippos.X = (int)(e.X - (negyzetx / 2));
-							shippos.Y = (int)(e.Y - (negyzety / 2));
 							subm -= 1;
-							sp.Add(shippos);
-							//object[] args = new object[1];
-							//args[0] = shippos;
-							//ps.Send("game", "SetShipPositions", args);
 							HajoLeteve = true;
-							meret = new Size((int)negyzetx * 1, (int)negyzety);
-							if (felv && horizont) {								
-								hajo = new Bitmap(BattleshipClient.Properties.Resources._05Submarine, meret);
-								letett.Add(new Hajok(shippos.X, shippos.Y, hajo, meret));
-								hajoszamlalo++;
-								felv = false;
-								CommonData.Instance.Hajotipus = hajotipusok.None;
-							} else if (felv && !horizont) {
-								meret = new Size((int)negyzetx, (int)negyzety * 1);
-								Bitmap x = new Bitmap(BattleshipClient.Properties.Resources._02Battleship);
-								hajo = new Bitmap(BattleshipClient.Properties.Resources._05Submarine, meret);
-								hajo.RotateFlip(RotateFlipType.Rotate90FlipX);
-								letett.Add(new Hajok(shippos.X, shippos.Y, hajo, meret));
-								hajoszamlalo++;
-								felv = false;
-								CommonData.Instance.Hajotipus = hajotipusok.None;
-							}
+                            if (felv)
+                                hajo = BattleshipClient.Properties.Resources._05Submarine;
 							if (subm == 0) {
 								TriggerHajoDisable();
 							}
 						}
 						break;
 					}
-				if (hajoszamlalo == 7) {
-					//for (int i = 0; i < sp.Count; i++) {
-					//    object[] args = new object[1];
-					//    args[0] = (ShipPosition)sp[i];
-					//    ps.Send("game", "SetShipPositions", args);
-					//}
+
+                if (HajoLeteve)
+                {
+                    sp.Add(shippos);
+                    if (horizont)
+                        meret = new Size((int)(negyzetx * (float)shippos.Size), (int)negyzety);
+                    else
+                        meret = new Size((int)negyzetx, (int)(negyzety * (float)shippos.Size));
+
+                    hajo = new Bitmap(hajo, meret);
+                    if (!horizont)
+                        hajo.RotateFlip(RotateFlipType.Rotate90FlipX);
+                    letett.Add(new Hajok((int)(shippos.X * negyzetx), (int)(shippos.Y * negyzety), hajo, meret));
+                    hajoszamlalo++;
+                    felv = false;
+                    CommonData.Instance.Hajotipus = hajotipusok.None;
+                }
+
+				if (sp.Count >= 7) {
+					for (int i = 0; i < sp.Count; i++) {
+                        CommonData.Instance.gh.SetShipPositions(sp[i]);
+					}
 					TriggerStartEnable();
 				}
 				this.Refresh();

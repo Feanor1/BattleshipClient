@@ -86,7 +86,8 @@ namespace BattleshipClient
 				Hits = new bool[value];
 			}
 		}
-
+		
+		[XmlIgnore()]
 		public bool Sunk
 		{
 			get
@@ -98,7 +99,7 @@ namespace BattleshipClient
 				return true;
 			}
 		}
-
+		
 		//NOTE: Don't use this client side
 		public bool Shoot(int where)
 		{

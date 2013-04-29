@@ -46,8 +46,12 @@ namespace BattleshipClient {
 		}
 
 		public void SetShipPositions(ShipPosition ShipPositions) {
-            object[] args = new object[1];
-            args[0] = ShipPositions;
+            object[] args = new object[4];
+            args[0] = ShipPositions.X;
+            args[1] = ShipPositions.Y;
+            args[2] = ShipPositions.Vertical;
+            args[3] = ShipPositions.Size;
+
             ps.Send("game", "SetShipPositions", args);
 		}
 

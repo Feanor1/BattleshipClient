@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Threading;
 using System.Security.Cryptography;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace BattleshipClient
 {
@@ -27,7 +28,7 @@ namespace BattleshipClient
 			if ((method == "Register") || (method == "Login")) {
 				args[1] = CalculateMD5Hash( (string)args[0] + (string)args[1] + "abc" );
 			}
-
+			
 			string str = controller + ";" + method + ";" + SimpleXmlSerializer.Serialize(args) + "\n";
 			Console.WriteLine(str);
 			
@@ -82,7 +83,7 @@ namespace BattleshipClient
 				return SimpleXmlSerializer.Deserialize<UserAccount>(read(tc));
 
             if (controller == "chatsystem" && method == "SendMsg")
-                return true;//SimpleXmlSerializer.Deserialize<object>(read(tc)); //gond lehet a visszatérési érték miatt
+                return SimpleXmlSerializer.Deserialize<bool>(read(tc));
 
 			if (controller == "chatsystem" && method == "GetNewMsgs")
 				return SimpleXmlSerializer.Deserialize<List<String>>(read(tc));
@@ -94,7 +95,7 @@ namespace BattleshipClient
 				return SimpleXmlSerializer.Deserialize<bool>(read(tc));
 
 			if (controller == "game" && method == "SetShipPositions")
-                return true; // SimpleXmlSerializer.Deserialize<object>(read(tc)); //gond lehet a visszatérési érték miatt
+                return SimpleXmlSerializer.Deserialize<bool>(read(tc));
 
 			if (controller == "game" && method == "StartGame")
 				return SimpleXmlSerializer.Deserialize<bool>(read(tc));

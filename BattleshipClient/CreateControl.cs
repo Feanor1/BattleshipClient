@@ -19,6 +19,7 @@ namespace BattleshipClient {
 		public CreateControl() {
 			InitializeComponent();
 			gh = new GameHandler(CommonData.Instance.Ps);
+            CommonData.Instance.Createc = this;
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
@@ -34,13 +35,16 @@ namespace BattleshipClient {
 			bool valasz = false; 
 			valasz = gh.CreateGame(X, Y);
 			if (valasz) {
+				CommonData.Instance.X = X;
+				CommonData.Instance.Y = Y;
+                CommonData.Instance.GameCreator = true;
 				TriggerBezar();
 			} else {
 				MessageBox.Show("Hibás X/Y paraméterek!");
 			}
 		}
 
-		void TriggerBezar() {
+		public void TriggerBezar() {
 			if (Bezar != null) {
 				Bezar();
 			}

@@ -26,7 +26,9 @@ namespace BattleshipClient {
 		Tables segit;
 		public BoardControl() {
 			InitializeComponent();
-			segit = new Tables(10, 10);
+			X=CommonData.Instance.X;
+			Y=CommonData.Instance.Y;
+			segit = new Tables(X, Y);
 			segit.Width = 400;
 			segit.Height = 400;
 			segit.Location = new Point(5, 5);

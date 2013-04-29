@@ -15,7 +15,7 @@ namespace BattleshipClient {
 		UserHandler uh;
 		GameHandler gh;
 		PortSender ps;
-		Form Game;
+		GameField Game;
         public Form1()
         {
             InitializeComponent();
@@ -51,6 +51,7 @@ namespace BattleshipClient {
 			//Ellenőrízd, h ez null-e
 			
 			Game = new GameField(ps, user);
+			Game.Alap = this;
 			
 			Game.Show();
 			this.Hide();
